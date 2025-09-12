@@ -1,104 +1,334 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>مواقيت الصلاة في مصر + تنبيهات قبل الصلاة</title>
-<style>
-:root{--bg:#0f172a;--card:#111827ee;--muted:#94a3b8;--text:#e5e7eb;--accent:#22d3ee;--accent2:#a78bfa;--radius:20px}
-*{box-sizing:border-box}
-body{margin:0;font-family:"Tajawal",system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial;background:radial-gradient(1200px 600px at 100% -10%,#1e293b 0%,#0b1020 60%,#070b16 100%);color:var(--text);min-height:100dvh;display:grid;place-items:start center;padding:24px}
-header{width:100%;max-width:1100px;margin:0 auto 16px auto}
-.card{width:100%;max-width:1100px;background:linear-gradient(180deg,#0b1224aa,#0b122480);backdrop-filter:blur(8px);border:1px solid #1f2937;border-radius:var(--radius);box-shadow:0 10px 30px #0008;padding:20px;margin:auto}
-h1{margin:0 0 8px;font-weight:800;letter-spacing:.3px}
-.sub{color:var(--muted);font-size:14px}
-.grid{display:grid;gap:14px;grid-template-columns:repeat(1,minmax(0,1fr))}
-@media(min-width:700px){.grid{grid-template-columns:1fr 1fr 1fr 1fr}}
-label{font-size:14px;color:var(--muted)}
-input,select{width:100%;background:#0b1224;color:var(--text);border:1px solid #263044;border-radius:12px;padding:10px 12px;outline:none}
-table{width:100%;border-collapse:separate;border-spacing:0;overflow:hidden;border-radius:16px}
-thead th{background:#101827;color:#cbd5e1;font-weight:700;padding:12px;border-bottom:1px solid #1f2937;text-align:center}
-tbody td{padding:12px;border-bottom:1px dashed #1f2937;text-align:center}
-tbody tr:last-child td{border-bottom:none}
-.pill{display:inline-block;padding:2px 10px;border-radius:999px;background:#0b1224;border:1px solid #263044;color:#cbd5e1;font-size:12px}
-.accent{color:var(--accent)}
-.accent2{color:var(--accent2)}
-.muted{color:var(--muted)}
-.badge{font-size:11px;padding:2px 8px;border-radius:999px;background:#1e293b;border:1px solid #334155;color:#cbd5e1}
-footer{color:#64748b;font-size:12px;margin-top:14px}
-.note{font-size:12px;color:#93c5fd}
-.loading{font-size:13px;color:#a3e635}
-.error{font-size:13px;color:#fca5a5}
-#countdown,#countup{margin-top:14px;font-size:16px;font-weight:600;text-align:center}
-#countdown{color:#22d3ee}#countup{color:#a78bfa}
-</style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>مواقيت الصلاة في مصر + تنبيهات قبل الصلاة</title>
+  <style>
+    :root{--bg:#0f172a;--card:#111827ee;--muted:#94a3b8;--text:#e5e7eb;--accent:#22d3ee;--accent2:#a78bfa;--radius:20px}
+    *{box-sizing:border-box}
+    body{margin:0;font-family:"Tajawal",system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial;background:radial-gradient(1200px 600px at 100% -10%,#1e293b 0%,#0b1020 60%,#070b16 100%);color:var(--text);min-height:100dvh;display:grid;place-items:start center;padding:24px}
+    header{width:100%;max-width:1100px;margin:0 auto 16px auto}
+    .card{width:100%;max-width:1100px;background:linear-gradient(180deg,#0b1224aa,#0b122480);backdrop-filter:blur(8px);border:1px solid #1f2937;border-radius:var(--radius);box-shadow:0 10px 30px #0008;padding:20px;margin:auto}
+    h1{margin:0 0 8px;font-weight:800;letter-spacing:.3px}
+    .sub{color:var(--muted);font-size:14px}
+    .grid{display:grid;gap:14px;grid-template-columns:repeat(1,minmax(0,1fr))}
+    @media(min-width:700px){.grid{grid-template-columns:1fr 1fr 1fr 1fr}}
+    label{font-size:14px;color:var(--muted)}
+    input,select{width:100%;background:#0b1224;color:var(--text);border:1px solid #263044;border-radius:12px;padding:10px 12px;outline:none}
+    table{width:100%;border-collapse:separate;border-spacing:0;overflow:hidden;border-radius:16px}
+    thead th{background:#101827;color:#cbd5e1;font-weight:700;padding:12px;border-bottom:1px solid #1f2937;text-align:center}
+    tbody td{padding:12px;border-bottom:1px dashed #1f2937;text-align:center}
+    tbody tr:last-child td{border-bottom:none}
+    .pill{display:inline-block;padding:2px 10px;border-radius:999px;background:#0b1224;border:1px solid #263044;color:#cbd5e1;font-size:12px}
+    .accent{color:var(--accent)}
+    .accent2{color:var(--accent2)}
+    .muted{color:var(--muted)}
+    .badge{font-size:11px;padding:2px 8px;border-radius:999px;background:#1e293b;border:1px solid #334155;color:#cbd5e1}
+    footer{color:#64748b;font-size:12px;margin-top:14px}
+    .note{font-size:12px;color:#93c5fd}
+    .loading{font-size:13px;color:#a3e635}
+    .error{font-size:13px;color:#fca5a5}
+    #countdown,#countup{margin-top:14px;font-size:16px;font-weight:600;text-align:center}
+    #countdown{color:#22d3ee}#countup{color:#a78bfa}
+  </style>
 </head>
 <body>
-<header>
-<h1>مواقيت الصلاة – <span class="accent" id="cityTitle">القاهرة</span></h1>
-<div class="sub">مع حساب الأوقات قبل كل صلاة بـ <span class="accent2">45</span> و <span class="accent2">30</span> و <span class="accent2">15</span> دقيقة</div>
-</header>
+  <header>
+    <h1>مواقيت الصلاة – <span class="accent" id="cityTitle">القاهرة</span></h1>
+    <div class="sub">مع حساب الأوقات قبل كل صلاة بـ <span class="accent2">45</span> و <span class="accent2">30</span> و <span class="accent2">15</span> دقيقة</div>
+  </header>
 
+  <section class="card">
+    <div class="grid" style="margin-bottom:14px">
+      <div>
+        <label>المحافظة</label>
+        <select id="city">
+          <option value="Cairo">القاهرة</option>
+          <option value="Giza">الجيزة</option>
+          <option value="Alexandria">الإسكندرية</option>
+          <option value="Port Said">بورسعيد</option>
+          <option value="Suez">السويس</option>
+          <option value="Damietta">دمياط</option>
+          <option value="Dakahlia">الدقهلية</option>
+          <option value="Sharqia">الشرقية</option>
+          <option value="Qalyubia">القليوبية</option>
+          <option value="Kafr El Sheikh">كفر الشيخ</option>
+          <option value="Gharbia">الغربية</option>
+          <option value="Monufia">المنوفية</option>
+          <option value="Beheira">البحيرة</option>
+          <option value="Ismailia">الإسماعيلية</option>
+          <option value="Beni Suef">بني سويف</option>
+          <option value="Faiyum">الفيوم</option>
+          <option value="Minya">المنيا</option>
+          <option value="Asyut">أسيوط</option>
+          <option value="Sohag">سوهاج</option>
+          <option value="Qena">قنا</option>
+          <option value="Luxor">الأقصر</option>
+          <option value="Aswan">أسوان</option>
+          <option value="Red Sea">البحر الأحمر</option>
+          <option value="New Valley">الوادي الجديد</option>
+          <option value="Matrouh">مطروح</option>
+          <option value="North Sinai">شمال سيناء</option>
+          <option value="South Sinai">جنوب سيناء</option>
+        </select>
+      </div>
+      <div>
+        <label>التاريخ</label>
+        <input type="date" id="dateInput" />
+      </div>
+      <div>
+        <label>طريقة الحساب</label>
+        <select id="method">
+          <option value="5">الهيئة العامة المصرية للمساحة (Egypt)</option>
+          <option value="3">الجمعية الإسلامية لأمريكا الشمالية (ISNA)</option>
+          <option value="2">رابطة العالم الإسلامي (MWL)</option>
+          <option value="4">جامعة أم القرى (Makkah)</option>
+          <option value="1">جامعة العلوم الإسلامية – كراتشي (Karachi)</option>
+          <option value="7">معهد الجيوفيزياء – طهران (Tehran)</option>
+          <option value="0">الجعفري (Jafari)</option>
+        </select>
+      </div>
+      <div>
+        <label>تنسيق الساعة</label>
+        <select id="clock">
+          <option value="24h">٢٤ ساعة</option>
+          <option value="12h">١٢ ساعة</option>
+        </select>
+      </div>
+    </div>
 
-<section class="card">
-<div class="grid" style="margin-bottom:14px">
-<div>
-<label>المحافظة</label>
-<select id="city">
-<option value="Cairo">القاهرة</option>
-<option value="Giza">الجيزة</option>
-<option value="Alexandria">الإسكندرية</option>
-<option value="Port Said">بورسعيد</option>
-<option value="Suez">السويس</option>
-<option value="Damietta">دمياط</option>
-<option value="Dakahlia">الدقهلية</option>
-<option value="Sharqia">الشرقية</option>
-<option value="Qalyubia">القليوبية</option>
-<option value="Kafr El Sheikh">كفر الشيخ</option>
-<option value="Gharbia">الغربية</option>
-<option value="Monufia">المنوفية</option>
-<option value="Beheira">البحيرة</option>
-<option value="Ismailia">الإسماعيلية</option>
-<option value="Beni Suef">بني سويف</option>
-<option value="Faiyum">الفيوم</option>
-<option value="Minya">المنيا</option>
-<option value="Asyut">أسيوط</option>
-<option value="Sohag">سوهاج</option>
-<option value="Qena">قنا</option>
-<option value="Luxor">الأقصر</option>
-<option value="Aswan">أسوان</option>
-<option value="Red Sea">البحر الأحمر</option>
-<option value="New Valley">الوادي الجديد</option>
-<option value="Matrouh">مطروح</option>
-<option value="North Sinai">شمال سيناء</option>
-<option value="South Sinai">جنوب سيناء</option>
-</select>
-</div>
-<div>
-<label>التاريخ</label>
-<input type="date" id="dateInput" />
-</div>
-<div>
-<label>طريقة الحساب</label>
-<select id="method">
-<option value="5">الهيئة العامة المصرية للمساحة (Egypt)</option>
-<option value="3">الجمعية الإسلامية لأمريكا الشمالية (ISNA)</option>
-<option value="2">رابطة العالم الإسلامي (MWL)</option>
-<option value="4">جامعة أم القرى (Makkah)</option>
-<option value="1">جامعة العلوم الإسلامية – كراتشي (Karachi)</option>
-<option value="7">معهد الجيوفيزياء – طهران (Tehran)</option>
-<option value="0">الجعفري (Jafari)</option>
-</select>
-</div>
-<div>
-<label>تنسيق الساعة</label>
-<select id="clock">
-<option value="24h">٢٤ ساعة</option>
-<option value="12h">١٢ ساعة</option>
-</select>
-</div>
-</div>
+    <div style="margin:6px 0 14px" class="note">يتم جلب المواقيت مباشرة من خدمة <span class="pill">AlAdhan API</span>.</div>
 
+    <div id="state" class="loading" style="margin-bottom:8px"></div>
 
-<div style="margin:6px 0 14px" class="note">يتم جلب المواقيت مباشرة من خدمة <span class="pill">AlAdhan API</span>.</div>
+    <div style="overflow:auto">
+      <table>
+        <thead>
+          <tr>
+            <th>الصلاة</th>
+            <th>الوقت</th>
+            <th>قبلها بـ 45 د</th>
+            <th>قبلها بـ 30 د</th>
+            <th>قبلها بـ 15 د</th>
+          </tr>
+        </thead>
+        <tbody id="tbody"></tbody>
+      </table>
+    </div>
+
+    <div id="countdown"></div>
+    <div id="countup"></div>
+
+        <div id="live" style="margin-top:14px; display:none">
+      <div style="display:flex; gap:10px; flex-wrap:wrap">
+        <div id="cdWrap" class="pill" style="font-size:14px; display:none">
+          ⏳ العدّاد إلى <span id="cdName"></span>: <strong id="countdown">--:--</strong>
+        </div>
+        <div id="cuWrap" class="pill" style="font-size:14px; display:none">
+          🕘 مرّ منذ أذان <span id="cuName"></span>: <strong id="countup">--:--</strong>
+        </div>
+      </div>
+      <div class="note" style="margin-top:6px">يظهر العدّاد التنازلي إذا تبقّى ≤ 45 دقيقة على الصلاة القادمة، ويظهر العدّاد التصاعدي حتى 50 دقيقة بعد الأذان.</div>
+    </div>
+    <footer id="info"></footer>
+    <div id="hijriDate" class="note" style="margin-top:8px; font-size:14px; color:#facc15"></div>
+  </section>
+
+  <script>
+    function fmt12(hhmm){const[H,M]=hhmm.split(':').map(Number);const suf=H<12?'ص':'م';const h12=(H%12)||12;return`${h12}:${String(M).padStart(2,'0')} ${suf}`}
+    function toMin(hhmm){const[H,M]=hhmm.split(':').map(Number);return H*60+M}
+    function fromMin(m,fmt){m=(m%1440+1440)%1440;const H=Math.floor(m/60),M=m%60;return fmt==='12h'?fmt12(`${String(H).padStart(2,'0')}:${String(M).padStart(2,'0')}`):`${String(H).padStart(2,'0')}:${String(M).padStart(2,'0')}`}
+
+    async function fetchTimes(dateISO,methodId,city){
+      const[y,m,d]=dateISO.split('-');
+      const url=`https://api.aladhan.com/v1/timingsByCity/${d}-${m}-${y}?city=${encodeURIComponent(city)}&country=Egypt&method=${methodId}`;
+      const res=await fetch(url);if(!res.ok) throw new Error('HTTP '+res.status);const json=await res.json();if(json.code!==200) throw new Error(json.status||'API error');return json.data;
+    }
+
+    function renderTable(timings,clockFmt){
+      const order=[['Fajr','الفجر'],['Dhuhr','الظهر'],['Asr','العصر'],['Maghrib','المغرب'],['Isha','العشاء']];
+      const tbody=document.getElementById('tbody');tbody.innerHTML='';
+      for(const[key,label] of order){
+        const base=timings[key].slice(0,5);const min=toMin(base);const td=document.createElement('tr');
+        const c45=fromMin(min-45,clockFmt);const c30=fromMin(min-30,clockFmt);const c15=fromMin(min-15,clockFmt);
+        const baseFmt=clockFmt==='12h'?fmt12(base):base;
+        td.innerHTML=`<td><strong>${label}</strong></td><td class="accent">${baseFmt}</td><td>${c45}</td><td>${c30}</td><td>${c15}</td>`;
+        tbody.appendChild(td);
+      }
+    }
+
+    function updateCountdown(timings){
+      const order=['Fajr','Dhuhr','Asr','Maghrib','Isha'];
+      const now=new Date();const nowMin=now.getHours()*60+now.getMinutes();
+      let nextPrayer=null,nextMin=null;
+      for(const key of order){
+        const t=toMin(timings[key].slice(0,5));
+        if(t>nowMin){nextPrayer=key;nextMin=t;break;}
+      }
+      const cd=document.getElementById('countdown');
+      const cu=document.getElementById('countup');
+      cd.textContent='';cu.textContent='';
+      if(nextPrayer){
+        const diff=nextMin-nowMin;
+        if(diff<=45 && diff>0){
+          cd.textContent=`العد التنازلي لصلاة ${nextPrayer}: ${diff} دقيقة`;
+        }
+      }else{
+        // لو مفيش صلاة تانية اليوم
+      }
+      // Count up بعد الأذان الحالي
+      let lastPrayer=null,lastMin=null;
+      for(let i=order.length-1;i>=0;i--){
+        const t=toMin(timings[order[i]].slice(0,5));
+        if(nowMin>=t){lastPrayer=order[i];lastMin=t;break;}
+      }
+      if(lastPrayer){
+        const diffUp=nowMin-lastMin;
+        if(diffUp>0 && diffUp<=50){
+          cu.textContent=`مضى على أذان ${lastPrayer}: ${diffUp} دقيقة`;
+        }
+      }
+    }
+
+    async function render(){
+      const dateInput=document.getElementById('dateInput');
+      const methodId=document.getElementById('method').value;
+      const clock=document.getElementById('clock').value;
+      const city=document.getElementById('city').value;
+      document.getElementById('cityTitle').textContent=city;
+      const state=document.getElementById('state');
+      const baseDate=dateInput.value?new Date(dateInput.value+'T00:00:00'):new Date();
+      state.textContent='جاري جلب المواقيت...';
+      try{
+        const y=baseDate.getFullYear();const m=String(baseDate.getMonth()+1).padStart(2,'0');const d=String(baseDate.getDate()).padStart(2,'0');
+        const data=await fetchTimes(`${y}-${m}-${d}`,methodId,city);
+        renderTable(data.timings,clock);
+        const info=document.getElementById('info');
+        info.innerHTML=`التاريخ: <span class="pill">${data.date.hijri.weekday.ar} ${data.date.hijri.day} ${data.date.hijri.month.ar} ${data.date.hijri.year} هـ</span> • الميلادي: <span class="pill">${data.date.readable}</span> • المنطقة الزمنية: <span class="pill">${data.meta.timezone}</span>`;
+        state.textContent='';
+        updateCountdown(data.timings);
+        setInterval(()=>updateCountdown(data.timings),60000);
+      }catch(err){state.className='error';state.textContent='تعذّر جلب المواقيت. تأكد من الاتصال بالإنترنت ثم حدّث الصفحة.';console.error(err)}
+    }
+
+    document.addEventListener('DOMContentLoaded',()=>{
+      const now=new Date();const yyyy=now.getFullYear();const mm=String(now.getMonth()+1).padStart(2,'0');const dd=String(now.getDate()).padStart(2,'0');
+      document.getElementById('dateInput').value=`${yyyy}-${mm}-${dd}`;
+      document.getElementById('method').value='5';document.getElementById('clock').value='24h';render();
+      document.getElementById('dateInput').addEventListener('change',render);
+      document.getElementById('method').addEventListener('change',render);
+      document.getElementById('clock').addEventListener('change',render);
+      document.getElementById('city').addEventListener('change',render);
+    });
+  </script>
+
+<!-- إضافة عدّاد تنازلي/تصاعدي للصلاة التالية والحالية -->
+<script>
+  // ثوابت وأدوات
+  const PRAYERS = [['Fajr','الفجر'],['Dhuhr','الظهر'],['Asr','العصر'],['Maghrib','المغرب'],['Isha','العشاء']];
+  let CURRENT = { data:null, nextData:null, tz:null, city:null, clock:'24h', selectedParts:null };
+  function tzNow(tz){
+    const now = new Date();
+    const parts = new Intl.DateTimeFormat('en-GB',{timeZone:tz,year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',second:'2-digit'}).formatToParts(now);
+    const get=k=>parts.find(p=>p.type===k).value;
+    return { y:+get('year'), m:+get('month'), d:+get('day'), hh:+get('hour'), mm:+get('minute'), ss:+get('second') };
+  }
+  function pad2(n){return String(n).padStart(2,'0')}
+  function mmss(totalSec){ totalSec=Math.max(0,totalSec|0); const m=Math.floor(totalSec/60), s=totalSec%60; return `${pad2(m)}:${pad2(s)}` }
+  function buildTodayMinutes(timings){ const map={}; for(const [k] of PRAYERS){ map[k]=toMin(timings[k].slice(0,5)); } return map; }
+  function sameYMD(a,b){ return a && b && a.y===b.y && a.m===b.m && a.d===b.d }
+
+  // إعادة تعريف renderTable (تظل الدالة الأحدث فعّالة)
+  function renderTable(timings,clockFmt){
+    const order = PRAYERS;
+    const tbody = document.getElementById('tbody');
+    tbody.innerHTML='';
+    for(const [key,label] of order){
+      const base=timings[key].slice(0,5);
+      const min=toMin(base);
+      const tr=document.createElement('tr');
+      const c45=fromMin(min-45,clockFmt), c30=fromMin(min-30,clockFmt), c15=fromMin(min-15,clockFmt);
+      const baseFmt = clockFmt==='12h'? fmt12(base): base;
+      tr.innerHTML=`<td><strong>${label}</strong></td><td class="accent">${baseFmt}</td><td>${c45}</td><td>${c30}</td><td>${c15}</td>`;
+      tbody.appendChild(tr);
+    }
+  }
+
+  function updateLivePanel(){
+    if(!CURRENT.data){ document.getElementById('live').style.display='none'; return; }
+    const live = document.getElementById('live');
+    const cdWrap = document.getElementById('cdWrap');
+    const cuWrap = document.getElementById('cuWrap');
+    const cdName = document.getElementById('cdName');
+    const cuName = document.getElementById('cuName');
+    const countdownEl = document.getElementById('countdown');
+    const countupEl = document.getElementById('countup');
+
+    const tz = CURRENT.tz; const now = tzNow(tz);
+    if(!sameYMD(now, CURRENT.selectedParts)) { live.style.display='none'; return; }
+    live.style.display='block';
+
+    const tim = buildTodayMinutes(CURRENT.data.timings);
+    const order = PRAYERS.map(p=>p[0]);
+    const namesAr = Object.fromEntries(PRAYERS);
+    const nowMin = now.hh*60 + now.mm + (now.ss/60);
+
+    let nextKey=null, nextMin=1e9, prevKey=null, prevMin=-1;
+    for(const k of order){
+      if(tim[k] > nowMin && tim[k] < nextMin){ nextMin=tim[k]; nextKey=k; }
+      if(tim[k] <= nowMin && tim[k] > prevMin){ prevMin=tim[k]; prevKey=k; }
+    }
+    if(!nextKey && CURRENT.nextData){ nextKey='Fajr'; nextMin = 1440 + toMin(CURRENT.nextData.timings.Fajr.slice(0,5)); }
+
+    const remainingSec = Math.floor((nextMin*60) - (nowMin*60));
+    const showCountdown = remainingSec <= 45*60 && remainingSec > 0;
+
+    let sinceSec = -1, sinceKey=null;
+    if(prevKey){ sinceSec = Math.floor((nowMin*60) - (prevMin*60)); sinceKey=prevKey; }
+    const showCountup = sinceSec >= 0 && sinceSec <= 50*60;
+
+    if(showCountup){
+      cuWrap.style.display='inline-block';
+      cuName.textContent = namesAr[sinceKey];
+      countupEl.textContent = mmss(sinceSec);
+    } else { cuWrap.style.display='none'; }
+
+    if(!showCountup && showCountdown){
+      cdWrap.style.display='inline-block';
+      cdName.textContent = namesAr[nextKey];
+      countdownEl.textContent = mmss(remainingSec);
+    } else if(!showCountdown){ cdWrap.style.display='none'; }
+  }
+
+  let tickHandle=null;
+  // إعادة تعريف render لتخزين البيانات وتشغيل المؤقت
+  async function render(){
+    const dateInput=document.getElementById('dateInput');
+    const methodId=document.getElementById('method').value;
+    const clock=document.getElementById('clock').value;
+    const city=document.getElementById('city').value;
+    document.getElementById('cityTitle').textContent=city;
+    const state=document.getElementById('state');
+    const baseDate=dateInput.value?new Date(dateInput.value+'T00:00:00'):new Date();
+    state.textContent='جاري جلب المواقيت...';
+    try{
+      const y=baseDate.getFullYear();const m=String(baseDate.getMonth()+1).padStart(2,'0');const d=String(baseDate.getDate()).padStart(2,'0');
+      const data=await fetchTimes(`${y}-${m}-${d}`,methodId,city);
+      const nextDate=new Date(baseDate); nextDate.setDate(nextDate.getDate()+1);
+      const y2=nextDate.getFullYear(), m2=String(nextDate.getMonth()+1).padStart(2,'0'), d2=String(nextDate.getDate()).padStart(2,'0');
+      let nextData=null; try{ nextData = await fetchTimes(`${y2}-${m2}-${d2}`,methodId,city);}catch(e){}
+
+      CURRENT = { data, nextData, tz: data.meta.timezone, city, clock, selectedParts: { y:+y, m:+m, d:+d } };
+      renderTable(data.timings, clock);
+      const info=document.getElementById('info');
+      info.innerHTML=`التاريخ: <span class=\"pill\">${data.date.hijri.weekday.ar} ${data.date.hijri.day} ${data.date.hijri.month.ar} ${data.date.hijri.year} هـ</span> • الميلادي: <span class=\"pill\">${data.date.readable}</span> • المنطقة الزمنية: <span class=\"pill\">${data.meta.timezone}</span>`;
+      state.textContent='';
+      if(tickHandle){ clearInterval(tickHandle); }
+      updateLivePanel();
+      tickHandle = setInterval(updateLivePanel, 1000);
+    }catch(err){ if(tickHandle){ clearInterval(tickHandle); } state.className='error'; state.textContent='تعذّر جلب المواقيت. تأكد من الاتصال بالإنترنت ثم حدّث الصفحة.'; console.error(err); }
+  }
+</script>
+</body>
 </html>
