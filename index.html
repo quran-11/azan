@@ -148,7 +148,7 @@
     }
 
     function renderTable(timings,clockFmt){
-      const order=[['Fajr','الفجر'],['Dhuhr','الظهر'],['Asr','العصر'],['Maghrib','المغرب'],['Isha','العشاء']];
+      const order=[['Fajr','الفجر'],['Sunrise','الشروق'],['Dhuhr','الظهر'],['Asr','العصر'],['Maghrib','المغرب'],['Isha','العشاء']];
       const tbody=document.getElementById('tbody');tbody.innerHTML='';
       for(const[key,label] of order){
         const base=timings[key].slice(0,5);const min=toMin(base);const td=document.createElement('tr');
@@ -333,4 +333,5 @@
 </script>
 </body>
 </html>
+
 
