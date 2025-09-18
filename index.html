@@ -227,7 +227,7 @@
 <!-- إضافة عدّاد تنازلي/تصاعدي للصلاة التالية والحالية -->
 <script>
   // ثوابت وأدوات
-  const PRAYERS = [['Fajr','الفجر'],['Dhuhr','الظهر'],['Asr','العصر'],['Maghrib','المغرب'],['Isha','العشاء']];
+  const PRAYERS = [['Fajr','الفجر'],['Sunrise','الشروق'],['Dhuhr','الظهر'],['Asr','العصر'],['Maghrib','المغرب'],['Isha','العشاء']];
   let CURRENT = { data:null, nextData:null, tz:null, city:null, clock:'24h', selectedParts:null };
   function tzNow(tz){
     const now = new Date();
@@ -333,5 +333,6 @@
 </script>
 </body>
 </html>
+
 
 
