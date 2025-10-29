@@ -1,10 +1,11 @@
+
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>مواقيت الصلاة في مصر + تنبيهات قبل الصلاة</title>
-  <style>
+<style>
     :root{--bg:#0f172a;--card:#111827ee;--muted:#94a3b8;--text:#e5e7eb;--accent:#22d3ee;--accent2:#a78bfa;--radius:20px}
     *{box-sizing:border-box}
     body{margin:0;font-family:"Tajawal",system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial;background:radial-gradient(1200px 600px at 100% -10%,#1e293b 0%,#0b1020 60%,#070b16 100%);color:var(--text);min-height:100dvh;display:grid;place-items:start center;padding:24px}
@@ -24,6 +25,7 @@
     .accent{color:var(--accent)}
     .accent2{color:var(--accent2)}
     .muted{color:var(--muted)}
+
     .badge{font-size:11px;padding:2px 8px;border-radius:999px;background:#1e293b;border:1px solid #334155;color:#cbd5e1}
     footer{color:#64748b;font-size:12px;margin-top:14px}
     .note{font-size:12px;color:#93c5fd}
@@ -31,6 +33,23 @@
     .error{font-size:13px;color:#fca5a5}
     #countdown,#countup{margin-top:14px;font-size:16px;font-weight:600;text-align:center}
     #countdown{color:#22d3ee}#countup{color:#a78bfa}
+	a:link {
+ 	 color: green;
+ 	 background-color: transparent;
+ 	 text-decoration: none;
+	}
+
+	a:visited {
+ 	 color: pink;
+ 	 background-color: transparent;
+ 	 text-decoration: none;
+	}
+
+	a:hover {
+	  color: red;
+ 	 background-color: transparent;
+	  text-decoration: underline;
+	}
   </style>
 </head>
 <body>
@@ -38,7 +57,17 @@
     <h1>مواقيت الصلاة – <span class="accent" id="cityTitle">القاهرة</span></h1>
     <div class="sub">مع حساب الأوقات قبل كل صلاة بـ <span class="accent2">45</span> و <span class="accent2">30</span> و <span class="accent2">15</span> دقيقة</div>
   </header>
+<link href="https://fonts.googleapis.com/css?family=Allerta" rel="stylesheet" />
 
+
+<h2 style="color:#00ff7e;font-weight: bold;font-size: x-large; color: white;">{{ إذاعة القرآن الكريم }}</h2>
+<h3 style="font-weight: bold;font-size: x-large;background: blanchedalmond;display: inline;color: black;">&#171; إذاعة القرآن الكريم من القاهرة بث مباشر &#187;</h3>
+    <div class="container-audio">
+        <audio controls autoplay id="myaudio">
+        <source rel="noreferrer nofollow" src="https://stream.radiojar.com/8s5u5tpdtwzuv" type="audio/mp3">
+        Your browser does not support the audio element.
+        </source></audio>
+    </div>
   <section class="card">
     <div class="grid" style="margin-bottom:14px">
       <div>
